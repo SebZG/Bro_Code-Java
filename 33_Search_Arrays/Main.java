@@ -13,7 +13,7 @@ public class Main {
 
         for (int i = 0; i < nums.length; i++) {
             if (target1 == nums[i]) {
-                System.out.printf("Element found at index: %d", i);
+                System.out.printf("Element found at index: %d\n", i);
                 isFound1 = true;
                 break;
             }
