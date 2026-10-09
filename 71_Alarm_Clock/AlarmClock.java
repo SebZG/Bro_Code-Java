@@ -2,6 +2,7 @@ import java.awt.Toolkit;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalTime;
+import java.util.Scanner;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -12,10 +13,12 @@ public class AlarmClock implements Runnable {
 
     private final LocalTime alarmTime;
     private final String filePath;
+    private final Scanner scanner;
 
-    AlarmClock(LocalTime alarmTime, String filePath) {
+    AlarmClock(LocalTime alarmTime, String filePath, Scanner scanner) {
         this.alarmTime = alarmTime;
         this.filePath = filePath;
+        this.scanner = scanner;
     }
 
     @Override
@@ -63,16 +66,20 @@ public class AlarmClock implements Runnable {
             Clip clip = AudioSystem.getClip();
             clip.open(audioStream);
             clip.start();
-
-            Thread.sleep(5000); // Play sound for 5 seconds
+            System.out.printf("Press *ENTER* to stop the alam: ");
+            scanner.nextLine();
+            clip.stop();
+            scanner.close();
+            // Thread.sleep(5000); // Play sound for 5 seconds
         } catch (UnsupportedAudioFileException e) {
-            System.out.println(e);
-        } catch (InterruptedException e) {
             System.out.println(e);
         } catch (LineUnavailableException e) {
             System.out.println(e);
         } catch (IOException e) {
             System.out.println(e);
         }
+        // catch (InterruptedException e) {
+        //     System.out.println(e);
+        // }
     }
 }

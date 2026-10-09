@@ -25,10 +25,10 @@ public class Main {
             }
         }
 
-        AlarmClock alarmClock = new AlarmClock(alarmTime, filePath);
+        AlarmClock alarmClock = new AlarmClock(alarmTime, filePath, scanner);
         Thread alarmThread = new Thread(alarmClock);
         alarmThread.start();
 
-        scanner.close();
+        // scanner.close();
     }
 }
