@@ -17,9 +17,10 @@ public class Main {
 
             @Override
             public void run() {
-                System.out.println("Hello");
-                count--;
-                if (count <= 0) {
+                if (count > 0) {
+                    System.out.println("Hello");
+                    count--;
+                } else {
                     System.out.println("Task Complete.");
                     timer.cancel();
                 }
