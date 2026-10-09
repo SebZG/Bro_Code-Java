@@ -18,11 +18,15 @@ public class Main {
                 String inputTime = scanner.nextLine();
 
                 alarmTime = LocalTime.parse(inputTime, formatter);
-                System.out.printf("Alarm set for %s", alarmTime);
+                System.out.printf("Alarm set for %s\n", alarmTime);
             } catch (DateTimeParseException e) {
                 System.out.println("Invalid format - HH:MM:SS");
             }
         }
+
+        AlarmClock alarmClock = new AlarmClock(alarmTime);
+        Thread alarmThread = new Thread(alarmClock);
+        alarmThread.start();
 
         scanner.close();
     }
